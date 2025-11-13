@@ -6,14 +6,14 @@ export default function Header({ activeTab, setActiveTab, cartCount }) {
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Store className="text-rose-600" />
-          <span className="font-semibold text-gray-800">Hybrid Market</span>
+          <span className="font-semibold text-gray-800">GURME ET</span>
         </div>
         <nav className="flex items-center gap-3">
           <button
             className={`px-3 py-1.5 rounded-md text-sm font-medium ${activeTab === 'shop' ? 'bg-gray-900 text-white' : 'text-gray-700 hover:bg-gray-100'}`}
             onClick={() => setActiveTab('shop')}
           >
-            Shop
+            Magazin
           </button>
           <button
             className={`px-3 py-1.5 rounded-md text-sm font-medium flex items-center gap-1 ${activeTab === 'admin' ? 'bg-gray-900 text-white' : 'text-gray-700 hover:bg-gray-100'}`}

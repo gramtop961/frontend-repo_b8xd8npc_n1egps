@@ -14,9 +14,9 @@ export default function Admin() {
       const res = await fetch(`${BACKEND}/api/admin/orders?auth_password=${encodeURIComponent(password)}`);
       const data = await res.json();
       if (res.ok) setOrders(data);
-      else setMessage(data.detail || "Auth failed");
+      else setMessage(data.detail || "Autentificare eșuată");
     } catch (e) {
-      setMessage("Network error");
+      setMessage("Eroare de rețea");
     }
   }
 
@@ -30,9 +30,9 @@ export default function Admin() {
       });
       const data = await res.json();
       if (res.ok) {
-        setMessage("Butcher item added");
-      } else setMessage(data.detail || "Failed");
-    } catch (e) { setMessage("Network error"); }
+        setMessage("Produs măcelărie adăugat");
+      } else setMessage(data.detail || "Eșuat");
+    } catch (e) { setMessage("Eroare de rețea"); }
   }
 
   async function addGrocery() {
@@ -45,9 +45,9 @@ export default function Admin() {
       });
       const data = await res.json();
       if (res.ok) {
-        setMessage("Grocery item added");
-      } else setMessage(data.detail || "Failed");
-    } catch (e) { setMessage("Network error"); }
+        setMessage("Produs băcănie adăugat");
+      } else setMessage(data.detail || "Eșuat");
+    } catch (e) { setMessage("Eroare de rețea"); }
   }
 
   async function setStatus(id, status) {
@@ -59,41 +59,41 @@ export default function Admin() {
       });
       const data = await res.json();
       if (res.ok) {
-        setMessage("Status updated");
+        setMessage("Status actualizat");
         refreshOrders();
-      } else setMessage(data.detail || "Failed");
-    } catch (e) { setMessage("Network error"); }
+      } else setMessage(data.detail || "Eșuat");
+    } catch (e) { setMessage("Eroare de rețea"); }
   }
 
   return (
     <div className="max-w-6xl mx-auto p-4 space-y-6">
       <div className="bg-white border rounded-lg p-4">
-        <div className="font-semibold mb-2">Admin Password</div>
+        <div className="font-semibold mb-2">Parola admin</div>
         <input type="password" className="border rounded px-2 py-1" value={password} onChange={(e)=>setPassword(e.target.value)} />
-        <button onClick={refreshOrders} className="ml-2 px-3 py-1.5 bg-gray-900 text-white rounded">Load Orders</button>
+        <button onClick={refreshOrders} className="ml-2 px-3 py-1.5 bg-gray-900 text-white rounded">Încarcă comenzile</button>
         {message && <div className="text-sm text-gray-600 mt-2">{message}</div>}
       </div>
 
       <div className="grid md:grid-cols-2 gap-4">
         <div className="bg-white border rounded-lg p-4 space-y-2">
-          <div className="font-semibold">Add Butcher Item</div>
-          <input className="w-full border rounded px-2 py-1" placeholder="Title" value={butcherForm.title} onChange={(e)=>setButcherForm({...butcherForm, title:e.target.value})} />
-          <input className="w-full border rounded px-2 py-1" placeholder="Description" value={butcherForm.description} onChange={(e)=>setButcherForm({...butcherForm, description:e.target.value})} />
-          <input type="number" min="0" step="0.01" className="w-full border rounded px-2 py-1" placeholder="Price per kg" value={butcherForm.price_per_kg} onChange={(e)=>setButcherForm({...butcherForm, price_per_kg:e.target.value})} />
-          <button onClick={addButcher} className="w-full bg-rose-600 text-white rounded py-2">Add</button>
+          <div className="font-semibold">Adaugă produs măcelărie</div>
+          <input className="w-full border rounded px-2 py-1" placeholder="Titlu" value={butcherForm.title} onChange={(e)=>setButcherForm({...butcherForm, title:e.target.value})} />
+          <input className="w-full border rounded px-2 py-1" placeholder="Descriere" value={butcherForm.description} onChange={(e)=>setButcherForm({...butcherForm, description:e.target.value})} />
+          <input type="number" min="0" step="0.01" className="w-full border rounded px-2 py-1" placeholder="Preț per kg" value={butcherForm.price_per_kg} onChange={(e)=>setButcherForm({...butcherForm, price_per_kg:e.target.value})} />
+          <button onClick={addButcher} className="w-full bg-rose-600 text-white rounded py-2">Adaugă</button>
         </div>
 
         <div className="bg-white border rounded-lg p-4 space-y-2">
-          <div className="font-semibold">Add Grocery Item</div>
-          <input className="w-full border rounded px-2 py-1" placeholder="Title" value={groceryForm.title} onChange={(e)=>setGroceryForm({...groceryForm, title:e.target.value})} />
-          <input className="w-full border rounded px-2 py-1" placeholder="Description" value={groceryForm.description} onChange={(e)=>setGroceryForm({...groceryForm, description:e.target.value})} />
-          <input type="number" min="0" step="0.01" className="w-full border rounded px-2 py-1" placeholder="Price" value={groceryForm.price} onChange={(e)=>setGroceryForm({...groceryForm, price:e.target.value})} />
-          <button onClick={addGrocery} className="w-full bg-emerald-600 text-white rounded py-2">Add</button>
+          <div className="font-semibold">Adaugă produs băcănie</div>
+          <input className="w-full border rounded px-2 py-1" placeholder="Titlu" value={groceryForm.title} onChange={(e)=>setGroceryForm({...groceryForm, title:e.target.value})} />
+          <input className="w-full border rounded px-2 py-1" placeholder="Descriere" value={groceryForm.description} onChange={(e)=>setGroceryForm({...groceryForm, description:e.target.value})} />
+          <input type="number" min="0" step="0.01" className="w-full border rounded px-2 py-1" placeholder="Preț" value={groceryForm.price} onChange={(e)=>setGroceryForm({...groceryForm, price:e.target.value})} />
+          <button onClick={addGrocery} className="w-full bg-emerald-600 text-white rounded py-2">Adaugă</button>
         </div>
       </div>
 
       <div className="bg-white border rounded-lg p-4">
-        <div className="font-semibold mb-2">Orders</div>
+        <div className="font-semibold mb-2">Comenzi</div>
         <div className="divide-y">
           {orders.map((o) => (
             <div key={o._id} className="py-3">

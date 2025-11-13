@@ -17,7 +17,7 @@ function App() {
           <Admin />
         )}
       </main>
-      <footer className="text-center text-xs text-gray-500 py-6">Cash on Delivery and Card on Delivery only.</footer>
+      <footer className="text-center text-xs text-gray-500 py-6">Doar Plata numerar la livrare și Card la livrare.</footer>
     </div>
   )
 }
